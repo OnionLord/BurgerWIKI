@@ -1,0 +1,89 @@
+package vr.mid.burgerdictionary;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+public class BurgerLogin extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.burgerlogin);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.burger_login, menu);
+		return true;
+	}
+	
+	private void check()
+	{
+		int cnt = 0;
+		try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, pass);
+            /* System.out.println("Database connection success"); */
+            PreparedStatement stmt = null;
+       
+            ResultSet rs;
+            
+            stmt = con.prepareStatement("select count(*) from account where id=?");
+            stmt.setString(1, id);
+            
+            rs = stmt.executeQuery();
+            /*BurgerInfo b = 
+    				new BurgerInfo(1, "싸이버거","맘스터치",437.8,882.8,3200,5400,
+    						"http://cfile28.uf.tistory.com/image/17173C3650625BBC06ED33", 
+    						"싸이버거<br>가수 싸이와는 관련 없다<br>닭다리살 패티");
+    		info.add(b);*/
+            rs.next();
+            cnt = rs.getInt(1);
+            
+            stmt.close();
+            rs.close();
+            con.close();
+            
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+        }
+		
+	}
+	
+	
+	public void onClickButton(View v)
+	{
+		switch(v.getId())
+		{
+		case R.id.login_btn1:
+			check();
+			break;
+		case R.id.login_btn2:
+			finish();
+			break;
+		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+}

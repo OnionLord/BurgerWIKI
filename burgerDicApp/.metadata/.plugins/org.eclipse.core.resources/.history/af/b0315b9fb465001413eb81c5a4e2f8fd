@@ -1,0 +1,154 @@
+package vr.mid.burgerdictionary;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class BurgerRegister extends Activity {
+
+	EditText id;
+	EditText pw;
+	EditText confirm;
+	EditText email;
+	Button submit;
+	Button cancel;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.burgerregister);
+		id = (EditText)findViewById(R.id.reg_id);
+		pw = (EditText)findViewById(R.id.reg_pw);
+		confirm = (EditText)findViewById(R.id.reg_confirm);
+		email = (EditText)findViewById(R.id.reg_mail);
+		
+	}
+	
+	public void onButtonClick(View v)
+	{
+		switch(v.getId())
+		{
+		case R.id.reg_btn1:
+			register();
+			break;
+		case R.id.reg_btn2:
+			finish();
+			break;
+		}
+	}
+
+	
+	private boolean duplicate(String id)
+	{
+		return false;
+	}
+	
+	private void register()
+	{
+		String rid = id.getText().toString();
+		String rpw = pw.getText().toString();
+		String rconfirm = confirm.getText().toString();
+		String rmail = email.getText().toString();
+		
+		if(rpw != rconfirm)
+		{
+			new AlertDialog.Builder(this)
+        	.setTitle("Fail")
+        	.setMessage("비밀번호와 확인 비밀번호가 다릅니다..")
+        	.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			}).show();
+		}
+		else if(rid.length() < 8)
+		{
+			new AlertDialog.Builder(this)
+        	.setTitle("Fail")
+        	.setMessage("ID는 8자 이상입니다.")
+        	.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			}).show();
+		}
+		else if(rpw.length() < 8)
+		{
+			new AlertDialog.Builder(this)
+        	.setTitle("Fail")
+        	.setMessage("비밀번호 는 8자 이상입니다.")
+        	.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			}).show();
+		}
+		else if(rmail.length() < 4)
+		{
+			new AlertDialog.Builder(this)
+        	.setTitle("Fail")
+        	.setMessage("이메일 주소를 입력하세요.")
+        	.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			}).show();
+		}
+		else if(!duplicate(rid))
+		{
+			new AlertDialog.Builder(this)
+        	.setTitle("Fail")
+        	.setMessage("중복된 아이디 입니다.")
+        	.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			}).show();
+		}
+		else
+		{
+			finish();
+		}
+		
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.burger_register, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+}
