@@ -1,3 +1,0 @@
-INDEX VERSION 1.127
-D:\Dev\Project\mobilemid\webcontent\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3724855963.index
-\webContent\src

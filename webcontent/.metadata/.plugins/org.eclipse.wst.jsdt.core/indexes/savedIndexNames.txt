@@ -1,8 +1,0 @@
-INDEX VERSION 1.3+D:\Dev\Project\mobilemid\webcontent\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-630773128.index
-1189696040.index
-51314758.index
-188545677.index
-4147731319.index
-448599144.index
-3724855963.index
