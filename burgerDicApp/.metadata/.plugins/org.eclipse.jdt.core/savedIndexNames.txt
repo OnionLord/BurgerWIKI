@@ -1,0 +1,7 @@
+INDEX VERSION 1.127+D:\Dev\Project\mobilemid\burgerDicApp\.metadata\.plugins\org.eclipse.jdt.core
+3597223311.index
+965378112.index
+3061484423.index
+2490497579.index
+1273050768.index
+4011515950.index
