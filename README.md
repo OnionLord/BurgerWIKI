@@ -5,11 +5,15 @@ OpenBurgerDictionary
 
 
 Server : Apache Tomcat 7.0 / Java Server Page / MySQL
+
 Client : Android Kitkat (API 19)
 
 
 WebContent -> Server
+
 BurgerDicApp -> Client
+
+
 
 DB(MySQL)
 Table “burger_content” : 햄버거의 정보를 담는 Table.
